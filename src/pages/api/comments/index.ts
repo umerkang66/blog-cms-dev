@@ -32,9 +32,11 @@ const getComments = catchAsync(async (req, res) => {
   const userSelect = 'name email role avatar';
   await connectToDb();
 
-  const limit = +(req.query.limit as string) ?? 9;
+  let limit = +(req.query.limit as string);
   const page = +(req.query.page as string);
   const skip = +(req.query.skip as string);
+
+  if (isNaN(limit)) limit = 9;
 
   if (req.query.belongsTo === all) {
     // for this action admin is required

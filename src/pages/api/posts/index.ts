@@ -32,9 +32,13 @@ const handler: NextApiHandler = (req, res) => {
 
 const readPostsForClient = catchAsync(async (req, res) => {
   // normally on the first time (SSR), 'getPosts' will be called from getServerSideProps, but to call from the client, we have use this api handler
-  let page = (+(req.query.page as string) ?? undefined) as number | undefined;
-  const limit = +(req.query.limit as string) ?? 9;
-  const skip = (+(req.query.skip as string) ?? undefined) as number | undefined;
+  const pageNum = Number(req.query.page);
+  const limitNum = Number(req.query.limit);
+  const skipNum = Number(req.query.skip);
+
+  let page = Number.isNaN(pageNum) ? undefined : pageNum;
+  const limit = Number.isNaN(limitNum) ? 9 : limitNum;
+  const skip = Number.isNaN(skipNum) ? undefined : skipNum;
 
   if (!page && !skip) page = 1;
 

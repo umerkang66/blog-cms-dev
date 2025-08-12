@@ -42,8 +42,9 @@ export function usePaginatedFetch<
     async ({ page, skip }: { page?: number; skip?: number }) => {
       // content form page 1, will already be server rendered, so start
       // to fetch the content from page 2
+
       await fetchData(
-        `${url}?page=${page}&limit=${limit}&skip=${skip}${furtherQueryParams}`,
+        `${url}?page=${page}&limit=${limit}&skip=${skip}&${furtherQueryParams}`,
       );
     },
     [fetchData, limit, url, furtherQueryParams],
