@@ -39,7 +39,12 @@ export const authOptions: AuthOptions = {
         if (!previousUser) {
           const u: any = userFromGithub;
 
-          if (process.env.ADMIN?.split(',').includes(u.email)) u.role = 'admin';
+          if (
+            process.env.ADMIN?.split(',')
+              .map(i => i.toLowerCase())
+              .includes(u.email.toLowerCase())
+          )
+            u.role = 'admin';
 
           const user = await User.create(u);
           return createProfile(profile, user);
