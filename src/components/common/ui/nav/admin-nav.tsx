@@ -28,7 +28,9 @@ const AdminNav: FC<Props> = ({ navItems }) => {
         <Tippy key={href} content={label}>
           <Link
             href={href}
-            className="flex items-center p-3 text-lg text-primary-600 dark:text-primary-400 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-primary-100 dark:hover:bg-primary-800 transition-colors duration-200 rounded-lg mx-2"
+            className={`flex items-center ${
+              showFullNav ? 'justify-start p-3 mx-2' : 'justify-center p-2 mx-0'
+            } text-lg text-primary-600 dark:text-primary-400 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-primary-100 dark:hover:bg-primary-800 transition-colors duration-200 rounded-lg`}
           >
             <Icon size={20} />
             {showFullNav && <span className="ml-3 leading-none font-medium">{label}</span>}
@@ -53,7 +55,7 @@ const AdminNav: FC<Props> = ({ navItems }) => {
       } sticky top-0 flex flex-col justify-between overflow-hidden bg-white dark:bg-primary-900 border-r border-primary-200 dark:border-primary-700 transition-all duration-300`}
     >
       <div>
-        <Link href="/admin" className="mb-8 flex items-center space-x-3 p-4">
+        <Link href="/admin" className={`mb-8 flex items-center ${showFullNav ? 'space-x-3 p-4' : 'justify-center p-4'}`}>
           <Logo className="h-6 w-6 fill-accent-600 dark:fill-accent-400" />
           {showFullNav && (
             <span className="text-lg font-semibold leading-none text-accent-600 dark:text-accent-400">
@@ -62,12 +64,12 @@ const AdminNav: FC<Props> = ({ navItems }) => {
           )}
         </Link>
 
-        <div className="px-2">{renderNavItems()}</div>
+        <div className={showFullNav ? 'px-2' : 'px-1'}>{renderNavItems()}</div>
       </div>
 
       <button
-        className={`p-3 text-primary-600 dark:text-primary-400 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-primary-100 dark:hover:bg-primary-800 transition-colors duration-200 rounded-lg mx-2 mb-4 ${
-          showFullNav && 'self-end'
+        className={`text-primary-600 dark:text-primary-400 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-primary-100 dark:hover:bg-primary-800 transition-colors duration-200 rounded-lg mb-4 ${
+          showFullNav ? 'self-end p-3 mx-2' : 'self-center p-2 mx-0'
         }`}
         onClick={toggleFullNav}
       >

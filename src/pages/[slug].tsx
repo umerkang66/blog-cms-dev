@@ -63,7 +63,7 @@ const PostPage: NextPage<Props> = ({ post, relatedPosts }) => {
           <span>{dateFormat(createdAt, 'd-mmm-yyyy')}</span>
         </div>
 
-        <div className="sticky top-0 z-50 bg-primary py-5 transition dark:bg-primary-dark">
+        <div className="sticky top-16 z-40 bg-white py-5 transition dark:bg-primary-900">
           <Share url={host + post.slug} />
         </div>
 
