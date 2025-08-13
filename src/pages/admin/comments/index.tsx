@@ -21,17 +21,24 @@ const Comments: NextPage<Props> = ({ comments }) => {
   } = usePaginatedComments({ defaultComments: comments, limit: 9 });
 
   return (
-    <>
-      <AdminLayout>
-        <InfiniteScrollComments
-          updateTotalComments={updateTotalComments}
-          hasMore={hasMoreComments}
-          next={() => fetchMoreComments({ skip: totalComments.length })}
-          dataLength={totalComments.length}
-          comments={totalComments}
-        />
-      </AdminLayout>
-    </>
+    <AdminLayout>
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold text-primary-900 dark:text-primary-100 mb-2">
+          All Comments
+        </h1>
+        <p className="text-primary-600 dark:text-primary-400">
+          Moderate and manage user comments
+        </p>
+      </div>
+      
+      <InfiniteScrollComments
+        updateTotalComments={updateTotalComments}
+        hasMore={hasMoreComments}
+        next={() => fetchMoreComments({ skip: totalComments.length })}
+        dataLength={totalComments.length}
+        comments={totalComments}
+      />
+    </AdminLayout>
   );
 };
 

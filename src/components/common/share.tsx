@@ -16,30 +16,32 @@ type Props = { url: string; title?: string; quote?: string };
 
 const Share: FC<Props> = ({ url, title, quote }) => {
   return (
-    <div className="flex items-center space-x-3">
-      <p className="font-semibold text-primary-dark dark:text-primary">
+    <div className="flex items-center space-x-4">
+      <p className="font-semibold text-primary-700 dark:text-primary-300">
         Share:
       </p>
 
-      <FacebookShareButton url={url} quote={quote} title={title}>
-        <FacebookIcon round size={32} />
-      </FacebookShareButton>
+      <div className="flex items-center space-x-2">
+        <FacebookShareButton url={url} quote={quote} title={title}>
+          <FacebookIcon round size={32} />
+        </FacebookShareButton>
 
-      <TwitterShareButton url={url} title={title}>
-        <TwitterIcon round size={32} />
-      </TwitterShareButton>
+        <TwitterShareButton url={url} title={title}>
+          <TwitterIcon round size={32} />
+        </TwitterShareButton>
 
-      <LinkedinShareButton url={url} source={quote} title={title}>
-        <LinkedinIcon round size={32} />
-      </LinkedinShareButton>
+        <LinkedinShareButton url={url} source={quote} title={title}>
+          <LinkedinIcon round size={32} />
+        </LinkedinShareButton>
 
-      <WhatsappShareButton url={url} separator=":: " title={title}>
-        <WhatsappIcon round size={32} />
-      </WhatsappShareButton>
+        <WhatsappShareButton url={url} separator=":: " title={title}>
+          <WhatsappIcon round size={32} />
+        </WhatsappShareButton>
 
-      <RedditShareButton url={url} title={title}>
-        <RedditIcon round size={32} />
-      </RedditShareButton>
+        <RedditShareButton url={url} title={title}>
+          <RedditIcon round size={32} />
+        </RedditShareButton>
+      </div>
     </div>
   );
 };

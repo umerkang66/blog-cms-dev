@@ -18,12 +18,18 @@ const Users: NextPage<Props> = () => {
 
   return (
     <AdminLayout>
-      <h1 className="py-2 text-2xl font-semibold text-primary-dark transition dark:text-primary">
-        All Users
-      </h1>
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold text-primary-900 dark:text-primary-100 mb-2">
+          All Users
+        </h1>
+        <p className="text-primary-600 dark:text-primary-400">
+          Manage user accounts and permissions
+        </p>
+      </div>
+      
       <LatestUsersTable users={users} />
 
-      <div className="mt-4 flex w-full justify-end">
+      <div className="mt-6 flex w-full justify-end">
         <PaginationBtns
           disablePrev={page === 1}
           disableNext={users.length < limit}

@@ -33,7 +33,16 @@ const Update: NextPage<Props> = ({ post }) => {
   if (!post) return null;
 
   return (
-    <AdminLayout title={`Update Post - ${post.title}`}>
+    <AdminLayout>
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold text-primary-900 dark:text-primary-100 mb-2">
+          Edit Post
+        </h1>
+        <p className="text-primary-600 dark:text-primary-400">
+          Update your blog post content and settings
+        </p>
+      </div>
+      
       <div className="mx-auto max-w-4xl">
         <Editor
           initialValue={serializePostTags(post)}

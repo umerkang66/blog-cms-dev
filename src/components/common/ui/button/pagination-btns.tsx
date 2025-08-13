@@ -13,24 +13,24 @@ const PaginationBtns: FC<Props> = props => {
   const { disableNext, disablePrev, onNext, onPrev, loading } = props;
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-3">
       {loading && (
         <BiLoader
-          className="animate-spin text-secondary-dark dark:text-secondary-light"
+          className="animate-spin text-accent-500 dark:text-accent-400"
           size={20}
         />
       )}
       <button
         onClick={onPrev}
         disabled={disablePrev}
-        className="bg-secondary-light px-2 py-1 text-primary-dark disabled:opacity-50 dark:bg-secondary-dark dark:text-primary"
+        className="btn-secondary btn-sm disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Prev
+        Previous
       </button>
       <button
         onClick={onNext}
         disabled={disableNext}
-        className="bg-secondary-light px-2 py-1 text-primary-dark disabled:opacity-50 dark:bg-secondary-dark dark:text-primary"
+        className="btn-primary btn-sm disabled:opacity-50 disabled:cursor-not-allowed"
       >
         Next
       </button>

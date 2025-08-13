@@ -42,35 +42,35 @@ const CommentForm: FC<Props> = ({
   }, [editor, initialState]);
 
   return (
-    <div>
+    <div className="space-y-4">
       {!!title && (
-        <h1 className="py-3 text-xl font-semibold text-primary-dark dark:text-primary">
+        <h3 className="text-lg font-semibold text-primary-900 dark:text-primary-100">
           {title}
-        </h1>
+        </h3>
       )}
       <EditorContent
         onClick={() => getFocusedEditor(editor!).run()}
-        className="min-h-[100px] cursor-text rounded border-[1px] border-secondary-dark p-2"
+        className="min-h-[100px] cursor-text rounded-lg border border-primary-200 dark:border-primary-700 p-3 bg-white dark:bg-primary-900 focus-within:border-accent-500 focus-within:ring-2 focus-within:ring-accent-500/20 transition-all duration-200"
         editor={editor}
       />
 
-      <div className="justify-end py-3 md:flex">
-        <div className="flex space-x-4">
-          <ActionButton
-            title={btnTitle ?? 'Submit'}
-            onClick={handleSubmit}
-            busy={busy}
-          />
+      <div className="flex items-center justify-end space-x-3">
+        <ActionButton
+          title={btnTitle ?? 'Submit'}
+          onClick={handleSubmit}
+          busy={busy}
+          variant="primary"
+          size="sm"
+        />
 
-          {!!onClose && (
-            <button
-              onClick={onClose}
-              className="text-primary-dark dark:text-primary"
-            >
-              Close
-            </button>
-          )}
-        </div>
+        {!!onClose && (
+          <button
+            onClick={onClose}
+            className="btn-ghost btn-sm"
+          >
+            Cancel
+          </button>
+        )}
       </div>
     </div>
   );

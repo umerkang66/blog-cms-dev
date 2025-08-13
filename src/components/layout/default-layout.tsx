@@ -8,10 +8,11 @@ const DefaultLayout: FC<Props> = ({ children, title, desc }) => {
   return (
     <>
       <AppHead title={title} desc={desc} />
-      <div className="min-h-screen bg-primary transition dark:bg-primary-dark">
+      <div className="min-h-screen bg-primary-50 dark:bg-primary-950 transition-colors duration-200">
         <UserNav />
-
-        <div className="mx-auto max-w-4xl">{children}</div>
+        <main className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          {children}
+        </main>
       </div>
     </>
   );

@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import Image from 'next/image';
 import { useCallback, type FC } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
@@ -12,18 +11,9 @@ type Props = {
 
 const ProfileHead: FC<Props> = props => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center space-x-2">
       {/* image / name initial */}
       <ProfileIcon {...props} />
-
-      {/* down icon */}
-      <AiFillCaretDown
-        className={
-          props.lightOnly
-            ? 'text-primary'
-            : 'text-primary-dark dark:text-primary'
-        }
-      />
     </div>
   );
 };

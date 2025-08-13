@@ -54,7 +54,7 @@ const EditLink: FC<Props> = ({ editor }) => {
         initialState={getInitialState()}
       />
       {!showEditForm && (
-        <div className="z-50 flex items-center space-x-6 rounded bg-primary p-3 text-primary-dark shadow-md shadow-secondary-dark dark:bg-primary-dark dark:text-primary">
+        <div className="z-50 flex items-center space-x-6 rounded bg-white p-3 text-primary-900 shadow-md shadow-primary-200 dark:bg-primary-900 dark:text-primary-100">
           <button onClick={handleOnLinkOpenClick}>
             <BsBoxArrowUpRight />
           </button>

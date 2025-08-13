@@ -5,6 +5,8 @@ const lightTheme = 'light';
 const darkTheme = 'dark';
 
 export function useDarkMode() {
+  const [isDark, setIsDark] = useState(false);
+
   const storeThemeToLocalStorage = (theme: string) => {
     localStorage.setItem(THEME_LS, theme);
   };
@@ -18,6 +20,9 @@ export function useDarkMode() {
 
     if (previousTheme) classList.remove(previousTheme);
     classList.add(newTheme);
+
+    // Update the isDark state
+    setIsDark(newTheme === darkTheme);
   };
 
   const toggleTheme = () => {
@@ -30,7 +35,10 @@ export function useDarkMode() {
 
   useEffect(() => {
     const oldTheme = getThemeFromLocalStorage();
-    if (oldTheme) return updateTheme(oldTheme);
+    if (oldTheme) {
+      updateTheme(oldTheme);
+      return;
+    }
 
     // if old theme doesn't available, use the default theme of browser or computer
     const runningOnDarkMode = window.matchMedia(
@@ -46,5 +54,5 @@ export function useDarkMode() {
     }
   }, []);
 
-  return { toggleTheme };
+  return { toggleTheme, isDark };
 }

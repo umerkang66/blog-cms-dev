@@ -70,10 +70,10 @@ const ToolBar: FC<Props> = ({ editor, onOpenImageClick }) => {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center text-primary-700 dark:text-primary-200">
       <Dropdown options={options} head={<Head label={getLabel()} />} />
 
-      <div className="bg-secondary-dark dark:bg-secondary-light mx-8 h-4 w-[1px]" />
+      <div className="mx-8 h-4 w-[1px] bg-primary-300 dark:bg-primary-700" />
 
       <div className="flex items-center space-x-3">
         <ToolBarButton
@@ -105,7 +105,7 @@ const ToolBar: FC<Props> = ({ editor, onOpenImageClick }) => {
         </ToolBarButton>
       </div>
 
-      <div className="bg-secondary-dark dark:bg-secondary-light mx-8 h-4 w-[1px]" />
+      <div className="mx-8 h-4 w-[1px] bg-primary-300 dark:bg-primary-700" />
 
       <div className="flex items-center space-x-3">
         <ToolBarButton
@@ -146,7 +146,7 @@ const ToolBar: FC<Props> = ({ editor, onOpenImageClick }) => {
         </ToolBarButton>
       </div>
 
-      <div className="bg-secondary-dark dark:bg-secondary-light mx-8 h-4 w-[1px]" />
+      <div className="mx-8 h-4 w-[1px] bg-primary-300 dark:bg-primary-700" />
 
       <div className="flex items-center space-x-3">
         <EmbedYoutube onSubmit={handleEmbedYoutube} />

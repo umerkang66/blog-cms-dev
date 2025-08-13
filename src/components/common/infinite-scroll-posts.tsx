@@ -29,7 +29,7 @@ const InfiniteScrollPosts: FC<Props> = ({
   const [deleteId, setDeleteId] = useState(null as string | null);
 
   const defaultLoader = (
-    <p className="animate-pulse p-3 text-center text-xl font-semibold text-secondary-dark opacity-50">
+    <p className="animate-pulse p-3 text-center text-xl font-semibold text-primary-600 dark:text-primary-400">
       Loading...
     </p>
   );
@@ -58,8 +58,8 @@ const InfiniteScrollPosts: FC<Props> = ({
         dataLength={dataLength}
         loader={loader || defaultLoader}
       >
-        <div className="mx-auto max-w-4xl p-3">
-          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <div className="p-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map(post => (
               <PostCard
                 onDelete={onDeleteClick}

@@ -18,7 +18,6 @@ const AdminNav: FC<Props> = ({ navItems }) => {
 
   useEffect(() => {
     const storedState = localStorage.getItem(NAV_VISIBILITY_KEY);
-
     if (storedState) setShowFullNav(JSON.parse(storedState));
   }, []);
 
@@ -29,10 +28,10 @@ const AdminNav: FC<Props> = ({ navItems }) => {
         <Tippy key={href} content={label}>
           <Link
             href={href}
-            className="flex items-center p-3 text-xl text-highlight-light transition hover:scale-[0.98] dark:text-highlight-dark"
+            className="flex items-center p-3 text-lg text-primary-600 dark:text-primary-400 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-primary-100 dark:hover:bg-primary-800 transition-colors duration-200 rounded-lg mx-2"
           >
-            <Icon size={24} />
-            {showFullNav && <span className="ml-2 leading-none">{label}</span>}
+            <Icon size={20} />
+            {showFullNav && <span className="ml-3 leading-none font-medium">{label}</span>}
           </Link>
         </Tippy>
       );
@@ -42,9 +41,7 @@ const AdminNav: FC<Props> = ({ navItems }) => {
   const toggleFullNav = () => {
     setShowFullNav(prevState => {
       const newState = !prevState;
-
       localStorage.setItem(NAV_VISIBILITY_KEY, JSON.stringify(newState));
-
       return newState;
     });
   };
@@ -53,32 +50,31 @@ const AdminNav: FC<Props> = ({ navItems }) => {
     <nav
       className={`h-screen ${
         showFullNav ? NAV_OPEN_WIDTH : NAV_CLOSE_WIDTH
-      } sticky top-0 flex flex-col justify-between overflow-hidden bg-secondary-light shadow-sm transition-width dark:bg-secondary-dark`}
+      } sticky top-0 flex flex-col justify-between overflow-hidden bg-white dark:bg-primary-900 border-r border-primary-200 dark:border-primary-700 transition-all duration-300`}
     >
       <div>
-        <Link href="/admin" className="mb-10 flex items-center space-x-2 p-3">
-          <Logo className="h-5 w-5 fill-highlight-light dark:fill-highlight-dark" />
-
+        <Link href="/admin" className="mb-8 flex items-center space-x-3 p-4">
+          <Logo className="h-6 w-6 fill-accent-600 dark:fill-accent-400" />
           {showFullNav && (
-            <span className="text-xl font-semibold leading-none text-highlight-light dark:text-highlight-dark">
+            <span className="text-lg font-semibold leading-none text-accent-600 dark:text-accent-400">
               Admin
             </span>
           )}
         </Link>
 
-        <div>{renderNavItems()}</div>
+        <div className="px-2">{renderNavItems()}</div>
       </div>
 
       <button
-        className={`p-3 text-highlight-light transition hover:scale-[0.98] dark:text-highlight-dark ${
+        className={`p-3 text-primary-600 dark:text-primary-400 hover:text-accent-600 dark:hover:text-accent-400 hover:bg-primary-100 dark:hover:bg-primary-800 transition-colors duration-200 rounded-lg mx-2 mb-4 ${
           showFullNav && 'self-end'
         }`}
         onClick={toggleFullNav}
       >
         {showFullNav ? (
-          <RiMenuFoldFill size={25} />
+          <RiMenuFoldFill size={20} />
         ) : (
-          <RiMenuUnfoldFill size={25} />
+          <RiMenuUnfoldFill size={20} />
         )}
       </button>
     </nav>

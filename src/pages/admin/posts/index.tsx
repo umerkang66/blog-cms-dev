@@ -17,23 +17,27 @@ const Posts: NextPage<Props> = ({ posts }) => {
     usePaginatedPosts({ defaultPosts: posts, limit: 9 });
 
   return (
-    <>
-      <AdminLayout>
-        <h1 className="py-4 text-2xl font-semibold text-primary-dark underline dark:text-primary">
+    <AdminLayout>
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold text-primary-900 dark:text-primary-100 mb-2">
           All Posts
         </h1>
-        <InfiniteScrollPosts
-          deletedPostId={id =>
-            updateTotalPosts(prev => prev.filter(post => post.id !== id))
-          }
-          hasMore={hasMorePosts}
-          next={() => fetchMorePosts({ skip: totalPosts.length })}
-          dataLength={totalPosts.length}
-          posts={totalPosts}
-          showControls
-        />
-      </AdminLayout>
-    </>
+        <p className="text-primary-600 dark:text-primary-400">
+          Manage and edit your blog posts
+        </p>
+      </div>
+      
+      <InfiniteScrollPosts
+        deletedPostId={id =>
+          updateTotalPosts(prev => prev.filter(post => post.id !== id))
+        }
+        hasMore={hasMorePosts}
+        next={() => fetchMorePosts({ skip: totalPosts.length })}
+        dataLength={totalPosts.length}
+        posts={totalPosts}
+        showControls
+      />
+    </AdminLayout>
   );
 };
 

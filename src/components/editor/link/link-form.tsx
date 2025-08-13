@@ -31,7 +31,7 @@ const LinkForm: FC<Props> = ({ visible, initialState, onSubmit }) => {
   if (!visible) return null;
 
   return (
-    <div className="rounded bg-primary p-2 shadow-sm shadow-secondary-dark dark:bg-primary-dark">
+    <div className="rounded bg-white p-2 shadow-sm shadow-primary-200 dark:bg-primary-900">
       <input
         autoFocus
         type="text"
@@ -40,7 +40,7 @@ const LinkForm: FC<Props> = ({ visible, initialState, onSubmit }) => {
           setLink(prev => ({ ...prev, url }))
         }
         placeholder="https://example.com"
-        className="rounded border-2 border-secondary-dark bg-transparent p-2 text-primary-dark transition focus:border-primary-dark dark:text-primary dark:focus:border-primary"
+        className="rounded border-2 border-primary-300 bg-transparent p-2 text-primary-900 transition focus:border-primary-400 dark:border-primary-700 dark:text-primary-100 dark:focus:border-primary-500"
       />
       <div className="mt-2 flex items-center space-x-2">
         <input
@@ -52,7 +52,7 @@ const LinkForm: FC<Props> = ({ visible, initialState, onSubmit }) => {
           }
         />
         <label
-          className="text-secondary-dark dark:text-secondary-light"
+          className="text-primary-700 dark:text-primary-300"
           htmlFor="open-in-new-tab"
         >
           Open in new Tab
@@ -61,7 +61,7 @@ const LinkForm: FC<Props> = ({ visible, initialState, onSubmit }) => {
         <div className="flex-1 text-right">
           <button
             onClick={handleSubmit}
-            className="rounded bg-action px-2 py-1 text-sm text-primary-dark"
+            className="rounded bg-accent-600 hover:bg-accent-700 px-2 py-1 text-sm text-white"
           >
             Apply
           </button>

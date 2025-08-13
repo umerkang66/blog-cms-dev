@@ -1,5 +1,4 @@
 import { IUser } from '@/types';
-import classNames from 'classnames';
 import Image from 'next/image';
 import { useCallback, type FC } from 'react';
 
@@ -14,21 +13,24 @@ type Props = {
 const ProfileIcon: FC<Props> = ({ lightOnly, avatar, nameInitial }) => {
   const getColors = useCallback(() => {
     return lightOnly
-      ? 'text-primary-dark bg-primary'
-      : 'bg-primary-dark text-primary dark:bg-primary dark:text-primary-dark';
+      ? 'text-primary-100 bg-accent-600'
+      : 'bg-primary-100 text-primary-700 dark:bg-primary-800 dark:text-primary-300';
   }, [lightOnly]);
 
   return (
     <div
-      className={classNames(
-        'relative flex h-8 w-8 select-none items-center justify-center overflow-hidden rounded-full',
-        getColors(),
-      )}
+      className={`relative flex h-10 w-10 select-none items-center justify-center overflow-hidden rounded-full font-semibold text-sm ${getColors()}`}
     >
       {avatar ? (
-        <Image src={avatar} layout="fill" alt="Profile" />
+        <Image 
+          src={avatar} 
+          alt="Profile" 
+          fill
+          className="object-cover"
+          sizes="40px"
+        />
       ) : (
-        nameInitial
+        <span className="uppercase">{nameInitial}</span>
       )}
     </div>
   );

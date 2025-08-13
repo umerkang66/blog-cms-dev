@@ -86,8 +86,8 @@ const Editor: FC<Props> = ({ initialValue, btnTitle, busy, onSubmit }) => {
 
   return (
     <>
-      <div className="bg-primary p-3 transition dark:bg-primary-dark">
-        <div className="sticky top-0 z-10 bg-primary py-3 dark:bg-primary-dark">
+      <div className="bg-white p-3 transition dark:bg-primary-900">
+        <div className="sticky top-0 z-10 bg-white py-3 dark:bg-primary-900">
           {/* Thumbnail Selector and Submit */}
           <div className="mb-3 flex items-center justify-between">
             <ThumbnailSelector
@@ -107,7 +107,7 @@ const Editor: FC<Props> = ({ initialValue, btnTitle, busy, onSubmit }) => {
           {/* Title Input */}
           <input
             type="text"
-            className="mb-3 w-full border-0 border-b-[1px] border-secondary-dark bg-transparent py-2 text-3xl font-semibold italic text-primary-dark outline-none dark:border-secondary-light dark:text-primary"
+            className="mb-3 w-full border-0 border-b-[1px] border-primary-300 bg-transparent py-2 text-3xl font-semibold italic text-primary-900 outline-none dark:border-primary-700 dark:text-primary-100"
             placeholder="Title"
             value={post.title}
             onChange={({ target: { value: title } }) =>
@@ -120,14 +120,14 @@ const Editor: FC<Props> = ({ initialValue, btnTitle, busy, onSubmit }) => {
             onOpenImageClick={() => setShowGallery(true)}
           />
 
-          <div className="my-3 h-[1px] w-full bg-secondary-dark dark:bg-secondary-light" />
+          <div className="my-3 h-[1px] w-full bg-primary-200 dark:bg-primary-700" />
         </div>
 
         {editor && <EditLink editor={editor} />}
 
         <EditorContent editor={editor} className="min-h-[300px]" />
 
-        <div className="my-3 h-[1px] w-full bg-secondary-dark dark:bg-secondary-light" />
+        <div className="my-3 h-[1px] w-full bg-primary-200 dark:bg-primary-700" />
 
         <SeoForm
           title={post.title}

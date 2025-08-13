@@ -25,17 +25,22 @@ const AdminLayout: FC<PropsWithChildren & { title?: string }> = ({
   return (
     <>
       <AppHead title={title} />
-      <div className="flex">
+      <div className="flex min-h-screen bg-primary-50 dark:bg-primary-950">
         <AdminNav navItems={navItems} />
-        <div className="flex-1 bg-primary p-4 dark:bg-primary-dark">
-          <AdminSecondaryNav />
-          {children}
+        <div className="flex-1 p-4">
+          <div className="max-w-7xl mx-auto">
+            <AdminSecondaryNav />
+            <div className="mt-4">
+              {children}
+            </div>
+          </div>
         </div>
         <Link
           href="/admin/posts/create"
-          className="fixed bottom-10 right-10 z-10 rounded-full bg-secondary-dark p-4 text-primary shadow-sm transition hover:scale-90 dark:bg-secondary-light dark:text-primary-dark"
+          className="fixed bottom-6 right-6 z-10 rounded-full bg-accent-600 hover:bg-accent-700 p-3 text-white shadow-lg transition-colors duration-200"
+          aria-label="Create new post"
         >
-          <AiOutlineFileAdd size={28} />
+          <AiOutlineFileAdd size={24} />
         </Link>
       </div>
     </>

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import slugify from 'slugify';
 
 const commonInput =
-  'w-full rounded border-2 border-secondary-dark bg-transparent p-2 text-primary-dark outline-none transition focus:border-primary-dark dark:text-primary dark:focus:border-primary';
+  'w-full rounded border-2 border-primary-300 bg-transparent p-2 text-primary-900 outline-none transition focus:border-primary-400 placeholder-primary-400 dark:border-primary-700 dark:text-primary-100 dark:focus:border-primary-500 dark:placeholder-primary-500';
 
 export type SeoResult = { slug: string; tags: string; meta: string };
 
@@ -68,7 +68,7 @@ const SeoForm: FC<Props> = ({ title, initialValue, onChange }) => {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-xl font-semibold text-primary-dark dark:text-primary">
+      <h1 className="text-xl font-semibold text-primary-900 dark:text-primary-100">
         SEO Section
       </h1>
 
@@ -98,7 +98,7 @@ const SeoForm: FC<Props> = ({ title, initialValue, onChange }) => {
           value={seoFormState.meta}
           onChange={onChangeHandler}
         />
-        <p className="absolute bottom-3 right-3 text-sm text-primary-dark dark:text-primary">
+        <p className="absolute bottom-3 right-3 text-sm text-primary-700 dark:text-primary-300">
           {seoFormState.meta.length}/150
         </p>
       </div>
@@ -116,7 +116,7 @@ const Input: FC<{
 }> = ({ className, name, value, placeholder, label, onChange }) => {
   return (
     <label className="relative block">
-      <span className="absolute top-1/2 -translate-y-1/2 pl-2 text-sm font-semibold text-primary-dark dark:text-primary">
+      <span className="absolute top-1/2 -translate-y-1/2 pl-2 text-sm font-semibold text-primary-700 dark:text-primary-300">
         {label}
       </span>
 
