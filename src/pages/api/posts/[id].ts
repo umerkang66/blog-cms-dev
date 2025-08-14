@@ -83,22 +83,26 @@ const updatePost = catchAsync(async (req, res) => {
     throw results;
   }
 
-  const post = await previousPost.updateOne(results, {
+  await previousPost.updateOne(results, {
     new: true,
     runValidators: true,
   });
-  await Promise.all([res.revalidate('/'), res.revalidate(`/${post?.slug}`)]);
-  res.send({ post });
+  await Promise.all([res.revalidate('/'), res.revalidate(`/${previousPost?.slug}`)]);
+  res.send({ post: previousPost });
 });
 
 const deletePost = catchAsync(async (req, res) => {
   await connectToDb();
-  await requireAdmin(req, res);
+  const { user } = await requireAdmin(req, res);
 
   const id = req.query.id;
   const previousPost = await Post.findById(id);
   if (!previousPost) {
     throw new NotFoundError('Post not found');
+  }
+
+  if (previousPost.author.toString() !== user.id.toString()) {
+    throw new UnAuthorizedError();
   }
 
   // thumbnail handler
