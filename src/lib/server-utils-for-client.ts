@@ -29,7 +29,11 @@ export async function getPosts(
   // if skip is absent, page will be available
   const finalSkip = skip ?? (page! - 1) * limit;
 
-  const posts = await Post.find().select(select).skip(finalSkip).limit(limit);
+  const posts = await Post.find()
+    .populate('author', 'name avatar')
+    .select(select)
+    .skip(finalSkip)
+    .limit(limit);
 
   return JSON.parse(JSON.stringify(posts));
 }

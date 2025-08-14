@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import { type FC } from 'react';
-import { IPost } from '@/types';
+import { IAuthorInfo, IPost } from '@/types';
 import dateFormat from 'dateformat';
 import Link from 'next/link';
 import { trimText } from '@/lib/client-utils';
 import { BsPencil, BsTrash } from 'react-icons/bs';
+import { ProfileIcon } from './ui/profile-icon';
+import { useUser } from '@/hooks/use-user';
 
 type Props = {
   post: IPost;
@@ -14,6 +16,13 @@ type Props = {
 
 const PostCard: FC<Props> = ({ post, controls = false, onDelete }) => {
   const { id, title, slug, meta, tags, thumbnail, createdAt } = post;
+
+  const { user } = useUser();
+  const authorId =
+    typeof post.author === 'string'
+      ? post.author
+      : (post.author as IAuthorInfo)?.id;
+  const canControl = Boolean(controls && user && authorId && user.id === authorId);
 
   // Handle different date types
   const formatDate = (date: string | number | Date) => {
@@ -64,7 +73,8 @@ const PostCard: FC<Props> = ({ post, controls = false, onDelete }) => {
 
       {/* Content */}
       <div className="flex flex-1 flex-col p-6">
-        {/* Tags and Date */}
+        {/* Tags and Date */
+        }
         <div className="mb-4 flex items-center justify-between">
           <div className="flex flex-wrap gap-2">
             {tags.slice(0, 3).map((tag, i) => (
@@ -89,6 +99,19 @@ const PostCard: FC<Props> = ({ post, controls = false, onDelete }) => {
           </time>
         </div>
 
+        {/* Author */}
+        {typeof post.author === 'object' && (post.author as IAuthorInfo)?.name && (
+          <div className="mb-4 flex items-center gap-3">
+            <ProfileIcon
+              avatar={(post.author as IAuthorInfo)?.avatar}
+              nameInitial={(post.author as IAuthorInfo)?.name?.[0]}
+            />
+            <span className="text-sm text-primary-700 dark:text-primary-300 font-medium">
+              {(post.author as IAuthorInfo).name}
+            </span>
+          </div>
+        )}
+
         {/* Title */}
         <Link href={`/${slug}`} className="group/title">
           <h2 className="mb-3 text-xl font-bold text-primary-900 dark:text-primary-100 leading-tight group-hover/title:text-accent-600 dark:group-hover/title:text-accent-400 transition-colors duration-200 line-clamp-2">
@@ -102,7 +125,7 @@ const PostCard: FC<Props> = ({ post, controls = false, onDelete }) => {
         </p>
 
         {/* Controls */}
-        {controls && (
+        {canControl && (
           <div className="mt-auto pt-4 border-t border-primary-200 dark:border-primary-700">
             <div className="flex items-center justify-end gap-3">
               <Link 
